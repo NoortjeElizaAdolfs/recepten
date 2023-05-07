@@ -1,0 +1,78 @@
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d3d3d3;
+    border-radius: 0.5rem;
+    margin-bottom: 5rem;
+    box-shadow: 1rem 2rem 5rem #aaa;
+    position: relative;
+}
+    
+.recepten-form {
+    width: 60rem;
+    height: 10rem;
+}   
+    
+.inspiratie-form {
+    width: 60rem;
+    padding: 2rem 0;
+    flex-direction: column;
+}
+    
+.inspiratie-label {
+    padding: 0 1rem;
+}
+    
+.inspiratie-label-checkbox {
+    padding: 0 1rem;
+    padding-bottom: 0.5rem;
+}
+    
+.form-group {
+    padding: 0.5rem;
+}
+    
+.alert {
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    background-color: rgb(233, 72, 72);
+    width: calc(100% - 0.4rem);
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+}
+    
+.alert h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+}
+    
+.search-form input {
+    font-size: 1.6rem;
+    border: none;
+    border-bottom: 0.1rem solid #ccc;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    height: 3rem;
+}
+    
+.search-form input[type="text"] {
+    padding: 0 0.5rem;
+    width: 60%;
+    color: #555;
+}
+    
+.search-form input[type="checkbox"] {
+    height: auto;
+}
+    
+.search-form input[type="submit"] {
+    width: 25%;
+    text-transform: uppercase;
+    background-color: #40b48e;
+    color: #fff;
+}

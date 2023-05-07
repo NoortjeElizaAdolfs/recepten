@@ -1,14 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
+import './styles.css';
+import './styles/Forms.css';
 import App from './App';
-import { BrowserRouter } from "react-router-dom";
-import "../src/styles.css";
 
-ReactDOM.render(
-<React.StrictMode>
-<BrowserRouter>
-<App />
-</BrowserRouter>
-</React.StrictMode>,
-document.getElementById('root')
+import {BrowserRouter as Router} from "react-router-dom";
+import AuthContextProvider from "./context/AuthContext";
+
+ReactDom.render(
+    <React.StrictMode>
+        <Router>
+        <AuthContextProvider>
+            <App/>
+        </AuthContextProvider>
+        </Router>
+    </React.StrictMode>,
+    document.getElementById('root')
 );

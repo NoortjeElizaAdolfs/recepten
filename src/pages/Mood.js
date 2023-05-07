@@ -5,8 +5,7 @@ import Recipe from "../components/Recipe";
 import Alert from "../components/Alert";
 
 
-function Recepten() {
-    
+function Mood() {
 const [query, setQuery] = useState("");
 const [recipes, setRecipes] = useState([]);
 const [alert, setAlert] = useState("");
@@ -40,7 +39,7 @@ getData();
 
 return (
 <div className="recepten">
-<h1>Food Searching App</h1>
+<h1>Food voor de betreffende Mood</h1>
 <form onSubmit={onSubmit} className="search-form recepten-form">
 {alert !== "" && <Alert alert={alert} />}
 <input
@@ -61,4 +60,4 @@ recipes.map(recipe => <Recipe key={uuidv4()} recipe={recipe} />)}
 );
 }
 
-export default Recepten;
+export default Mood;

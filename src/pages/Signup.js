@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
-import styles from "../styles/Signup.css"
 import axios from "axios";
-import {Navigate} from "react-router-dom";
+import {useHistory} from "react-router-dom";
+import "../styles/Signup.css"
 
 function Signup() {
     const [email, setEmail] = useState('');
     const [userName, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [user, setRole] = useState('');
+
+    const history = useHistory()
 
 
     async function SignUpUser(e) {
@@ -20,10 +22,9 @@ function Signup() {
                     "password": password,
                     "role": [user]
                 });
+            console.log(response)
 
-                Signup(response);
-
-            return <Navigate to="/login" replace={true} />
+            history.push("/login")
         } catch (e) {
             console.error(e);
 
@@ -33,11 +34,10 @@ function Signup() {
 
     return (
 
-        <>
-            <div/>
+        <div class="signup">
 
-            <form onSubmit={SignUpUser} className={styles["layout"]}>
-                <label htmlFor="email">
+            <form onSubmit={SignUpUser} className="search-form auth-signup-form">
+                <label htmlFor="email" className="form-group-signup">
                     Email:
                     <input
                         type="email"
@@ -47,7 +47,7 @@ function Signup() {
                         placeholder="Fill in your email"
                     />
                 </label>
-                <label htmlFor="username" className={styles["label"]}>
+                <label htmlFor="username" className="form-group-signup">
                     Username:
                     <input
                         type="text"
@@ -56,10 +56,10 @@ function Signup() {
                         value={userName}
                         placeholder="Fill in your username"
                     />
-                    {userName.length < 6 && <p className={styles["error"]}>Your username isn't long enough</p>}
-                    {userName.length >= 6 && <p className={styles["good"]}>Your username is long enough</p>}
+                    {userName.length < 6 && <p className="error">Your username isn't long enough</p>}
+                    {userName.length >= 6 && <p className="good">Your username is long enough</p>}
                 </label>
-                <label htmlFor="password" className={styles["label"]}>
+                <label htmlFor="password" className="form-group-signup">
                     Password:
                     <input
                         type="password"
@@ -68,12 +68,12 @@ function Signup() {
                         value={password}
                         placeholder="Your password"
                     />
-                    {password.length < 6 && <p className={styles["error"]}>Your password isn't long enough</p>}
-                    {password.length >= 6 && <p className={styles["good"]}>Your password is long enough</p>}
+                    {password.length < 6 && <p className="error">Your password isn't long enough</p>}
+                    {password.length >= 6 && <p className="good">Your password is long enough</p>}
 
                 </label>
 
-                <label htmlFor="role" className={styles["label"]}>
+                <label htmlFor="role" className="form-group-signup">
                     Role:
                     <input
                         type="text"
@@ -84,11 +84,11 @@ function Signup() {
                     />
                 </label>
 
-                <button type="submit" className={styles["button"]}>Register</button>
+                <button type="submit">Register</button>
             </form>
 
 
-        </>
+        </div>
 
     );
 }

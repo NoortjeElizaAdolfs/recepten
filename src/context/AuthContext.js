@@ -1,5 +1,5 @@
 import React, {createContext, useState} from 'react';
-import {Navigate} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 export const AuthContext = createContext({});
 
@@ -8,12 +8,13 @@ function AuthContextProvider({children}) {
         isAuth: false,
         user: null
     });
+    const history = useHistory();
 
     function login() {
         toggleIsAuth({
             ...isAuth, isAuth: true
         });
-        <Navigate to="/profile" replace={true} />
+        history.push("/profile");
     }
 
     function logout() {
@@ -23,7 +24,7 @@ function AuthContextProvider({children}) {
                 isAuth: false,
                 user: null,
             });
-            <Navigate to="/" replace={true} />
+        history.push('/');
     }
 
     const contextData = {

@@ -1,35 +1,33 @@
-import Navbar from "./Navbar";
+import React, {useContext} from "react";
+import {AuthContext} from "./context/AuthContext";
 import Home from "./pages/Home";
 import Recepten from "./pages/Recepten";
 import Inspiratie from "./pages/Inspiratie";
-import About from "./pages/About";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Mood from "./pages/Mood";
 import Profile from "./pages/Profile";
-import {Route, Routes} from "react-router-dom";
-
-
+import {Route, Switch} from "react-router-dom";
+import Login from "./pages/Login";
+import TopMenu from "./components/Navbar";
+import Signup from "./pages/Signup";
 
 function App() {
 
+    const { isAuth } = useContext(AuthContext);
 
-return (
-<>
-<Navbar />
-<div className="container">
-  <Routes>
-    <Route path= "/" element={ <Home />} />
-    <Route path= "/recepten" element={ <Recepten />} />
-    <Route path= "/inspiratie" element={ <Inspiratie />} />
-    <Route path= "/about" element={ <About />} />
-    <Route path= "/login" element={ <Login />} />
-    <Route path= "/signup" element={ <Signup />} />
-    <Route path= "/profile" element={ <Profile />} />
-    
-  </Routes>
-</div>
+  return (
+      <>
+          <TopMenu />
+          <Switch>
+              <Route exact path="/" component={Home} /> 
+              <Route exact path="/recepten" component={Recepten} />
+              <Route exact path="/inspiratie" component={Inspiratie} />
+              <Route exact path="/mood" component={Mood} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              {isAuth ? <Route exact path="/profile" component={Profile}/> : <Route exact path="/" component={Home}/>}
+          </Switch>
 </>
-)
+  );
 }
 
 export default App;
