@@ -54,6 +54,9 @@ getData();
 return (
 <div className="inspiratie">
 <h1>Food Searching App</h1>
+<section>
+         <p>Hier kunt u aanvinken wat u graag wil eten en gerechten met uw dieetwensen kan uitkiezen.</p>
+</section>
 <form onSubmit={onSubmit} className="search-form inspiratie-form">
 {alert !== "" && <Alert alert={alert} />}
 <div className="form-group">

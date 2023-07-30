@@ -43,10 +43,10 @@ return (
 
 <section>
          <p>Waar heeft u zin in? Kies uit:</p>
-        </section>
-        <section>
+</section>
+<section>
         <p>Bread, Breakfast, Snacks, Soup, Dessert,</p>
-        </section>
+</section>
 <form onSubmit={onSubmit} className="search-form recepten-form">
 {alert !== "" && <Alert alert={alert} />}
 <input
