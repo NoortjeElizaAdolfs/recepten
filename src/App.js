@@ -18,13 +18,15 @@ function App() {
       <>
           <TopMenu />
           <Switch>
-              <Route exact path="/" component={Home} /> 
+              <Route exact path="/" component={Home} />
+              <Route exact path="/home" component={Home} />
               <Route exact path="/recepten" component={Recepten} />
               <Route exact path="/inspiratie" component={Inspiratie} />
               <Route exact path="/mood" component={Mood} />
-              <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              {isAuth ? <Route exact path="/profile" component={Profile}/> : <Route exact path="/" component={Home}/>}
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/profile" component={Profile} />
+              {isAuth ? <Route exact path="/login" component={Login}/> : <Route exact path="/" component={Home}/>}
           </Switch>
 </>
   );

@@ -6,8 +6,8 @@ const home = ()=>{
         <div className="banner">
             <div className="banner-info">
             <h1>WELKOM BIJ <br/>onze recepten pagina</h1>
-            <a href="/recepten">Recepten</a><br></br>  
-            <a href="/inspiratie">Inspiratie</a><br></br>    
+            <a href="/login">Login</a><br></br>
+            <a href="/recepten">Recept</a><br></br>
             </div>
         </div>
     )
