@@ -10,8 +10,8 @@ const [query, setQuery] = useState("");
 const [recipes, setRecipes] = useState([]);
 const [alert, setAlert] = useState("");
 
-const APP_ID = "4fee97b6";
-const APP_KEY = "0c5700274833fb4cf102c03717281700";
+const APP_ID = "7971cb3b";
+const APP_KEY = "97180fb3488e83f0c8cb6fcfdc32a846";
 
 const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`;
 
@@ -40,6 +40,13 @@ getData();
 return (
 <div className="recepten">
 <h1>Food voor de betreffende Mood</h1>
+
+<section>
+         <p>Waar heeft u zin in? Kies uit:</p>
+</section>
+<section>
+        <p>Bread, Breakfast, Snacks, Soup, Dessert,</p>
+</section>
 <form onSubmit={onSubmit} className="search-form recepten-form">
 {alert !== "" && <Alert alert={alert} />}
 <input
