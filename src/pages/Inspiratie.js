@@ -4,9 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 import Recipe from "../components/Recipe";
 import Alert from "../components/Alert";
 
+
 function Inspiratie() {
-const APP_ID = "4fee97b6";
-const APP_KEY = "0c5700274833fb4cf102c03717281700";
+const APP_ID = "7971cb3b";
+const APP_KEY = "97180fb3488e83f0c8cb6fcfdc32a846";
 
 const [mealType, setMealType] = useState("");
 const [cuisineType, setCuisineType] = useState("");
