@@ -1,0 +1,36 @@
+@import "Vars";
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap");
+
+* {
+  font-family: "Source Sans Pro", sans-serif;
+  color: #333333;
+}
+
+h1 { /* Page title */
+  font-size: 5rem;
+  letter-spacing: 0.1rem;
+  font-style: italic;
+  color: $primary;
+  text-shadow: 0 0.2rem 5rem rgb(119, 115, 115);
+  text-transform: uppercase;
+  text-align: center;
+  margin: 4rem 0;
+}
+
+h2 { /* Sub title */
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  font-style: italic;
+  color: $light-grey;
+  text-shadow: 0 0.2rem 5rem rgb(119, 115, 115);
+  text-transform: uppercase;
+  text-align: center;
+  margin: -4rem 0 4rem 0;
+}
+
+.switch-auth {
+  color: $white;
+  a {
+    color: $primary;
+  }
+}

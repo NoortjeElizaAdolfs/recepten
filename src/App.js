@@ -1,35 +1,29 @@
-import React, {useContext} from "react";
-import {AuthContext} from "./context/AuthContext";
-import Home from "./pages/Home";
-import Recepten from "./pages/Recepten";
-import Inspiratie from "./pages/Inspiratie";
-import Mood from "./pages/Mood";
-import Profile from "./pages/Profile";
-import {Route, Switch} from "react-router-dom";
-import Login from "./pages/Login";
-import TopMenu from "./components/Navbar";
-import Signup from "./pages/Signup";
+import React from 'react'
+import {BrowserRouter, Routes,Route } from "react-router-dom"
+import Register from "./Pages/Register";
+import Login from "./Pages/Login";
+import AuthGuard from "./Components/Auth/AuthGuard";
+import Inspiratie from "./Pages/Inspiratie";
+import Cocktails from "./Pages/Cocktails";
+import Recepten from "./Pages/Recepten";
+import Home from "./Pages/Home";
 
-function App() {
-
-    const { isAuth } = useContext(AuthContext);
-
+const App = () => {
+  
   return (
-      <>
-          <TopMenu />
-          <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/home" component={Home} />
-              <Route exact path="/recepten" component={Recepten} />
-              <Route exact path="/inspiratie" component={Inspiratie} />
-              <Route exact path="/mood" component={Mood} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/profile" component={Profile} />
-              {isAuth ? <Route exact path="/login" component={Login}/> : <Route exact path="/" component={Home}/>}
-          </Switch>
-</>
-  );
+    <div>
+      <BrowserRouter> 
+      <Routes>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>} />
+          <Route path="/" element={<AuthGuard><Home/></AuthGuard>}/>
+          <Route path="/recepten" element={<AuthGuard><Recepten/></AuthGuard>}/>
+          <Route path="/inspiratie" element={<AuthGuard><Inspiratie/></AuthGuard>}/>
+          <Route path="/cocktails" element={<AuthGuard><Cocktails/></AuthGuard>}/>
+      </Routes>
+      </BrowserRouter>
+    </div>
+  )
 }
 
-export default App;
+export default App
