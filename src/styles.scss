@@ -1,0 +1,23 @@
+/** Styling is written with mobile first approach breakpoint at 768px */
+@import "styles/Vars";
+@import "styles/Content";
+@import "styles/Recepten";
+@import "styles/Navigation";
+@import "styles/Fonts";
+@import "styles/Form";
+
+.dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" viewBox="0 0 40 40"><path d="M10,10 L30,10 L20,20 z"/></svg>') no-repeat right 10px center/10px 10px;
+  background-color: white;
+}
+
+.inspiratie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
