@@ -1,13 +1,12 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import useToken from "./Auth/useToken";
+import React, { useContext } from 'react'
+import { Link } from "react-router-dom";
+import { AuthContext } from '../Context/AuthContext';
 
 function Navbar() {
-
-    const { removeToken } = useToken();
+    const { logout } = useContext(AuthContext);
 
     const handleLogout = () => {
-        removeToken();
+        logout();
         window.location.href = "/login";
     };
 

@@ -2,7 +2,7 @@ import React from 'react'
 import {BrowserRouter, Routes,Route } from "react-router-dom"
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
-import AuthGuard from "./Components/Auth/AuthGuard";
+import AuthGuard from "./Guards/AuthGuard";
 import Inspiratie from "./Pages/Inspiratie";
 import Cocktails from "./Pages/Cocktails";
 import Recepten from "./Pages/Recepten";
