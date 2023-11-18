@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { Link } from "react-router-dom";
 import { AuthContext } from '../Context/AuthContext';
+import NavbarItem from './NavbarItem';
 
 function Navbar() {
     const { logout } = useContext(AuthContext);
@@ -11,28 +11,12 @@ function Navbar() {
     };
 
     return (
-        <nav>
-            <div className="nav-container">
-
-                <ul className="topmenu">
-                    <li className="links">
-                        <Link to="/" >Home</Link>
-                    </li>
-                    <li className="links">
-                        <Link to="/recepten" >Recepten</Link>
-                    </li>
-                    <li className="links">
-                        <Link to="/inspiratie" >Inspiratie</Link>
-                    </li>
-
-                    <li className="links">
-                        <Link to="/cocktails">Cocktails</Link>
-                    </li>
-                    <li className="links" onClick={handleLogout}>
-                        <Link to="/login">Logout</Link>
-                    </li>
-                </ul>
-            </div>
+        <nav>  
+            <NavbarItem url={"/"} text={"Home"} />
+            <NavbarItem url={"/recepten"} text={"Recepten"} />
+            <NavbarItem url={"/inspiratie"} text={"Inspiratie"} />
+            <NavbarItem url={"/cocktails"} text={"Cocktails"} />
+            <NavbarItem url={"/login"} text={"Logout"} onClick={handleLogout} />
         </nav>
     );
 }
