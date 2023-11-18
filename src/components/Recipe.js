@@ -6,14 +6,14 @@ const Recipe = ({ recipe }) => {
   const { label, image, url, ingredients } = recipe.recipe;
 
   return (
-    <div className="recipe">
+    <article className="recipe">
         <a href={url} target="_blank" rel="noopener noreferrer">
             <h2>{label}</h2>
             <img src={image} alt={label} />
         </a>
       <button onClick={() => setShow(!show)}>Ingredients</button>
       {show && <RecipeDetails ingredients={ingredients} />}
-    </div>
+    </article>
   );
 };
 

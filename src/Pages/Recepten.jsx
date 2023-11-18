@@ -41,13 +41,13 @@ function Recepten() {
     return (
         <>
             <Navbar/>
-            <div className="container search">
-                <div className="fb-item">
+            <main className="container search">
+                <selction className="fb-item">
                     <h1>Recipes</h1>
                     <h1>Food Searching App</h1>
                     <h2>Hier kunt u aanvinken wat u graag wil eten en gerechten met uw dieetwensen kan uitkiezen.</h2>
-                </div>
-                <div className="fb-item search-bar">
+                </selction>
+                <selction className="fb-item search-bar">
                     <form onSubmit={onSubmit} className="search-form recepten-form">
                         {alert !== "" && <Alert alert={alert} />}
                         <input
@@ -60,14 +60,14 @@ function Recepten() {
                         />
                         <button type="submit" value="Search">Search</button>
                     </form>
-                </div>
-                <div className="fb-item">
+                </selction>
+                <selction className="fb-item">
                     <div className="recipes">
-                        {recipes !== [] &&
+                        {recipes.length !== 0 &&
                             recipes.map(recipe => <Recipe key={uuidv4()} recipe={recipe} />)}
                     </div>
-                </div>
-            </div>
+                </selction>
+            </main>
         </>
     );
 }
