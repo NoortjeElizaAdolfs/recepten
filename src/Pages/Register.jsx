@@ -23,9 +23,11 @@ const Register = () => {
     }
   return (
     <>
-    <div className='container auth'>
-        <div className='fb-item'>
+    <main className='container auth'>
+        <section className='fb-item'>
             <h1 className='title'>Register Here</h1>
+        </section>
+        <section>
             <form onSubmit={handleSubmit} className='w-full flex flex-col py-4'>
                     <p className='text-white font-bold'>UserName</p>
                     <input type="text" onChange={e => setUsername(e.target.value)} required className='p-3 my-2 rounded text-black' placeholder='JohnDoe'/>
@@ -44,8 +46,8 @@ const Register = () => {
                     <p className="switch-auth">Allready have an account? <Link to="/login">Login here</Link></p>
                 </div>
             </form>
-        </div>
-    </div>
+        </section>
+    </main>
     </>
   )
 }

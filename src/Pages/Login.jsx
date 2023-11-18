@@ -26,11 +26,11 @@ const Login = () => {
     }
   return (
     <>
-        <div className='container auth'>
-            <div className='fb-item'>
+        <main className='container auth'>
+            <section className='fb-item'>
                 <h1 className='auth-title'>Log In Here</h1>
-            </div>
-            <div className='fb-item'>
+            </section>
+            <section className='fb-item'>
                 <form onSubmit={handleSubmit} className='auth-form'>
                     <p className='label'>UserName</p>
                     <input className='input-field' type="text" onChange={e => setUsername(e.target.value)} required placeholder='JohnDoe'/>
@@ -41,8 +41,8 @@ const Login = () => {
                         <p className="switch-auth">No account? <Link to="/register">Register here</Link></p>
                     </div>
                 </form>
-            </div>
-        </div>
+            </section>
+        </main>
     </>
   )
 }
