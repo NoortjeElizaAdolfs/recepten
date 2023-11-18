@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export function AuthContextProvider({ children }) {
     const [token, setToken] = useState();
 
-    const login = (credentials) => {
+    const login = async(credentials) => {
         fetch('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
             method: 'POST',
             headers: {
@@ -26,7 +26,7 @@ export function AuthContextProvider({ children }) {
         })
     }
 
-    const register = (credentials) => {
+    const register = async(credentials) => {
         fetch('https://frontend-educational-backend.herokuapp.com/api/auth/signup', {
             method: 'POST',
             headers: {
