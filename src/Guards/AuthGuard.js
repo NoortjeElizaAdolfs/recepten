@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import useToken from "./useToken";
+import { AuthContext } from "../Context/AuthContext";
 
 const AuthGuard = ({ children }) => {
-    const token= useToken();
+    const { token } = useContext(AuthContext);
     const location = useLocation();
 
-    console.log(token.getToken())
-
-    if (token.getToken() === null) {
+    if (token === null) {
         return <Navigate to="/login" state={{ from: location }} />;
     }
 

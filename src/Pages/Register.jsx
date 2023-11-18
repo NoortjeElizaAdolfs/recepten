@@ -1,36 +1,24 @@
-import React, {useState} from 'react'
+import React, { useState, useContext } from 'react'
 import {Link, useNavigate} from "react-router-dom";
-import useToken from "../Components/Auth/useToken";
-
-async function registerUser(credentials) {
-    return fetch('https://frontend-educational-backend.herokuapp.com/api/auth/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-        .then(data => data.json())
-}
+import {AuthContext} from "../Context/AuthContext";
 
 const Register = () => {
+    const { register } = useContext(AuthContext);
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
     const [role, setRole] = useState();
 
-    const { setToken } = useToken();
     const navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault()
-        const result = await registerUser({
+        register({
             "username": username,
             "email": email,
             "password": password,
             "role": [role]
         })
-        setToken(result);
         navigate("/");
     }
   return (

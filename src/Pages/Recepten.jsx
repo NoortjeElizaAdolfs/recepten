@@ -23,7 +23,6 @@ function Recepten() {
             if (!result.data.more) {
                 return setAlert("No food with such name");
             }
-            console.log(result);
             setRecipes(result.data.hits);
             setQuery("");
             setAlert("");

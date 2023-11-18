@@ -1,47 +1,23 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {Link, useNavigate} from "react-router-dom";
-import useToken from "../Components/Auth/useToken";
-
-async function loginUser(credentials) {
-    return fetch('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-        .then(data => {
-            // log the status code and the response body
-            console.log(data.status, data.statusText);
-            console.log(data.body);
-            // check if the response is ok (status code 200-299)
-            if (data.ok) {
-                // parse the JSON response
-                return data.json();
-            } else {
-                // throw an error with the status code and text
-                throw new Error(`${data.status} ${data.statusText}`);
-            }
-        })
-}
+import {AuthContext} from "../Context/AuthContext";
 
 const Login = () => {
+    const { login } = useContext(AuthContext)
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
 
-    const { setToken } = useToken();
     const navigate = useNavigate()
 
     const handleSubmit = async e => {
         e.preventDefault()
         try {
             // call the loginUser function and await for the result
-            const result = await loginUser({
+            login({
                 "username": username,
                 "password": password
             })
             // set the token in the state
-            setToken(result);
             navigate("/");
         } catch (error) {
             // log the error message
