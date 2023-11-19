@@ -1,9 +1,9 @@
-#      Handleiding React
-##     Inhoudsopgave
-###    Inleiding
-####   Installatie
-#####  React uitvoeren
-###### Werking Aplicatie 
+#       Handleiding React
+##      Inhoudsopgave
+###     Inleiding
+####    Installatie
+#####   React project uitvoeren
+######  Werking Applicatie
 
 https://github.com/NoortjeElizaAdolfs/recepten
 ______________________________________________________________________________________________________
