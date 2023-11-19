@@ -11,7 +11,7 @@ const Recipe = ({ recipe }) => {
             <h2>{label}</h2>
             <img src={image} alt={label} />
         </a>
-      <button onClick={() => setShow(!show)}>Ingredients</button>
+      <button type="submit" onClick={() => setShow(!show)}>Ingredients</button>
       {show && <RecipeDetails ingredients={ingredients} />}
     </article>
   );
