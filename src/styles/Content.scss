@@ -82,7 +82,13 @@
 
 .banner .banner-info a:hover{
   background: #13878b;
+}
 
+.auth-error {
+  padding: 20px;
+  margin-bottom: 15px;
+  color: $white;
+  background-color: #f44336;
 }
 
 /* For Desktop */

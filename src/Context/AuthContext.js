@@ -50,11 +50,9 @@ export function AuthContextProvider({ children }) {
                 throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            setToken(null);
-            return setErrorMessage("Sorry er is iets fout gegaan.");
+            return setErrorMessage("Registeren mislukt");
         }
     };
-  
 
     const logout = () => {
         setToken(null);

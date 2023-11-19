@@ -29,7 +29,7 @@ const Register = () => {
         <section className='fb-item'>
             <h1 className='title'>Register Here</h1>
         </section>
-        <section>
+        <section className='fb-item'>
             <form onSubmit={handleSubmit} className='w-full flex flex-col py-4'>
                     <p className='text-white font-bold'>UserName</p>
                     <input type="text" onChange={e => setUsername(e.target.value)} required className='p-3 my-2 rounded text-black' placeholder='JohnDoe'/>

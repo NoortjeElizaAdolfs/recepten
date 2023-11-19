@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../Context/AuthContext";
+import ErrorBox from '../Components/ErrorBox';
 
 const Login = () => {
-    const { login,token } = useContext(AuthContext)
+    const { login,token,errorMessage } = useContext(AuthContext)
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
 
@@ -39,6 +40,7 @@ const Login = () => {
                     <p className='label'>PassWord</p>
                     <input className='input-field' type="password" onChange={e => setPassword(e.target.value)} required placeholder='Please enter a strong password'/>
                     <button type="submit" className='button auth-button'>Submit</button>
+                    {errorMessage?<ErrorBox message={errorMessage} />:null}
                     <div>
                         <p className="switch-auth">No account? <Link to="/register">Register here</Link></p>
                     </div>
