@@ -4,10 +4,10 @@ import {AuthContext} from "../Context/AuthContext";
 
 const Register = () => {
     const { register,token } = useContext(AuthContext);
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
-    const [email, setEmail] = useState();
-    const [role, setRole] = useState();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [role, setRole] = useState([]);
 
     const navigate = useNavigate();
 

@@ -5,8 +5,8 @@ import ErrorBox from '../Components/ErrorBox';
 
 const Login = () => {
     const { login,token,errorMessage } = useContext(AuthContext)
-    const [username, setUsername] = useState()
-    const [password, setPassword] = useState()
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
     const navigate = useNavigate()
 
