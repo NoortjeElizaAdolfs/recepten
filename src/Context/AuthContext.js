@@ -3,7 +3,7 @@ export const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
     const [token, setToken] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(); 
+    const [errorMessage, setErrorMessage] = useState(null); 
 
     const login = async (credentials) => {
         try {
