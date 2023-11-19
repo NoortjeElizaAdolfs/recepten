@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../Context/AuthContext";
 
 const Register = () => {
-    const { register,token } = useContext(AuthContext);
+    const { register } = useContext(AuthContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -19,9 +19,7 @@ const Register = () => {
             "password": password,
             "role": [role]
         })
-        if(token !== null) {
-            navigate("/");
-        }
+        navigate("/login")
     }
   return (
     <>
