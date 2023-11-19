@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Alert from "../Components/Alert";
+import ErrorBox from "../Components/ErrorBox";
 import Recipe from "../Components/Recipe";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
@@ -21,12 +21,19 @@ function Cocktails() {
                 if(!alcoholFree) {url.push("&health=alcohol-cocktail")}
                 if(alcoholFree) {url.push("&health=alcohol-free")}
                 if(lowSugar) {url.push("&health=low-sugar")}
+                try {
                 const result = await axios.get(url.join(""));
-                if (!result.data.more) {
-                        return setAlert("Sorry.. We could't find any recipes. Broaden your search query ");
+                        if (!result.ok) {
+                                // Handle specific error cases (e.g., 401 Unauthorized)
+                                throw new Error(`${result.status} ${result.statusText}`);                   
+                        } else if (!result.data.more) {
+                                return setAlert("Sorry.. We could't find any recipes. Broaden your search query ");
+                        }
+                        setRecipes(result.data.hits);
+                        setAlert("");
+                } catch(error) {
+                        return setAlert("Sorry something went wrong");
                 }
-                setRecipes(result.data.hits);
-                setAlert("");
         };
 
         const toggleAlcoholFree = () => setAlcoholFree((value) => !value)
@@ -47,7 +54,6 @@ function Cocktails() {
                             </section>
                             <section className="fb-item search-bar">
                                     <form onSubmit={onSubmit} className="search-form inspiratie-form">
-                                            {alert !== "" && <Alert alert={alert} />}
                                             <div className="checkbox-flexbox">
                                                     <div></div>
                                                     <label className="switch">
@@ -70,6 +76,7 @@ function Cocktails() {
                                                     <div></div>
                                             </div>
                                             <button type="submit" value="Search">Search</button>
+                                            {alert !== "" && <ErrorBox message={alert} />}
                                     </form>
                             </section>
                             <section className="fb-item">

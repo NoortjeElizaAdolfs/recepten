@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Recipe from "../Components/Recipe";
-import Alert from "../Components/Alert";
+import ErrorBox from "../Components/ErrorBox";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 
@@ -17,11 +17,15 @@ function Recepten() {
 
     const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`;
 
+
     const getData = async () => {
+        try {
         if (query !== "") {
             const result = await axios.get(url);
             if (!result.data.more) {
                 return setAlert("No food with such name");
+            } else if(!result.ok) {
+                throw new Error(`${result.status} ${result.statusText}`);
             }
             setRecipes(result.data.hits);
             setQuery("");
@@ -29,6 +33,9 @@ function Recepten() {
         } else {
             setAlert("Please fill the form");
         }
+    } catch(error) {
+        setAlert("Something went wrong");
+    }
     };
 
     const onChange = e => setQuery(e.target.value);
@@ -49,7 +56,6 @@ function Recepten() {
                 </selction>
                 <selction className="fb-item search-bar">
                     <form onSubmit={onSubmit} className="search-form recepten-form">
-                        {alert !== "" && <Alert alert={alert} />}
                         <input
                             type="text"
                             name="query"
@@ -59,6 +65,7 @@ function Recepten() {
                             placeholder="Search Food"
                         />
                         <button type="submit" value="Search">Search</button>
+                        {alert !== "" && <ErrorBox message={alert} />}
                     </form>
                 </selction>
                 <selction className="fb-item">
