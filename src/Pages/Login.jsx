@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../Context/AuthContext";
 
 const Login = () => {
-    const { login } = useContext(AuthContext)
+    const { login,token } = useContext(AuthContext)
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
 
@@ -18,7 +18,9 @@ const Login = () => {
                 "password": password
             })
             // set the token in the state
-            navigate("/");
+            if(token !== null) {
+                navigate("/");
+            }
         } catch (error) {
             // log the error message
             console.error(error.message);

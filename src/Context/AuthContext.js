@@ -1,51 +1,59 @@
 import React, { createContext, useState } from 'react';
-
 export const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
-    const [token, setToken] = useState();
+    const [token, setToken] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(); 
 
-    const login = async(credentials) => {
-        fetch('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials)
-        })
-        .then(data => {
-            // check if the response is ok (status code 200-299)
-            if (data.ok) {
-                console.log(data);
-                // parse the JSON response
-                setToken(data);
-            } else {
-                // throw an error with the status code and text
-                throw new Error(`${data.status} ${data.statusText}`);
-            }
-        })
-    }
+    const login = async (credentials) => {
+        try {
+            const response = await fetch('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credentials)
+            });
 
-    const register = async(credentials) => {
-        fetch('https://frontend-educational-backend.herokuapp.com/api/auth/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials)
-        })
-        .then(data => {
-            // check if the response is ok (status code 200-299)
-            if (data.ok) {
-                console.log(data);
-                // parse the JSON response
-                setToken(data);
+            if (response.ok) {
+                // Parse the JSON response
+                const data = await response.json();
+                setToken(data.accessToken);
             } else {
-                // throw an error with the status code and text
-                throw new Error(`${data.status} ${data.statusText}`);
+                setToken(null);
+                // Handle specific error cases (e.g., 401 Unauthorized)
+                throw new Error(`${response.status} ${response.statusText}`);
             }
-        })
-    }
+        } catch (error) {
+            return setErrorMessage("Login mislukt controleer gebruikersnaam en wacthwoord");
+        }
+    };
+
+
+    const register = async (credentials) => {
+        try {
+            const response = await fetch('https://frontend-educational-backend.herokuapp.com/api/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credentials)
+            });
+
+            if (response.ok) {
+                // Parse the JSON response
+                const data = await response.json();
+                setToken(data.accessToken);
+            } else {
+                setToken(null);
+                // Handle specific error cases (e.g., 401 Unauthorized)
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+        } catch (error) {
+            setToken(null);
+            return setErrorMessage("Sorry er is iets fout gegaan.");
+        }
+    };
   
 
     const logout = () => {
@@ -54,6 +62,7 @@ export function AuthContextProvider({ children }) {
 
     const contextData = {
         token: token,
+        errorMessage: errorMessage,
         login,
         register,
         logout,
