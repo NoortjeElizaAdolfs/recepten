@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Alert from "../Components/Alert";
+import ErrorBox from "../Components/ErrorBox";
 import Recipe from "../Components/Recipe";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
@@ -22,20 +22,24 @@ const [alert, setAlert] = useState("");
 const [url, setUrl] = useState([`https://api.edamam.com/search?q=&app_id=${APP_ID}&app_key=${APP_KEY}`]);
 
 const getData = async () => {
-setUrl([`https://api.edamam.com/search?q=&app_id=${APP_ID}&app_key=${APP_KEY}`]);
-if(mealType) {url.push(`&mealType=`+mealType)}
-if(cuisineType) {url.push(`&cuisineType=`+cuisineType)}
-if(diet) {url.push(`&diet=`+diet)}
-if(dairyFree) {url.push("&health=dairy-free")}
-if(glutenFree) {url.push("&health=gluten-free")}
-if(vegan) {url.push("&health=vegan")}
-if(vegetarian) {url.push("&health=vegetarian")}
-const result = await axios.get(url.join(""));
-if (!result.data.more) {
-return setAlert("Sorry.. We could't find any recipes. Broaden your search query ");
-}
-setRecipes(result.data.hits);
-setAlert("");
+    setUrl([`https://api.edamam.com/search?q=&app_id=${APP_ID}&app_key=${APP_KEY}`]);
+    if(mealType) {url.push(`&mealType=`+mealType)}
+    if(cuisineType) {url.push(`&cuisineType=`+cuisineType)}
+    if(diet) {url.push(`&diet=`+diet)}
+    if(dairyFree) {url.push("&health=dairy-free")}
+    if(glutenFree) {url.push("&health=gluten-free")}
+    if(vegan) {url.push("&health=vegan")}
+    if(vegetarian) {url.push("&health=vegetarian")}
+    try {
+        const result = await axios.get(url.join(""));                  
+        if (!result.data.more) {
+                return setAlert("Sorry.. We could't find any recipes. Broaden your search query ");
+        }
+        setRecipes(result.data.hits);
+        setAlert("");
+    } catch(error) {
+        return setAlert("Sorry something went wrong");
+    }
 };
 
 const onChangeMealType = e => setMealType(e.target.value);
@@ -62,7 +66,6 @@ getData();
                 </section>
                 <section className="fb-item search-bar">
                     <form onSubmit={onSubmit} className="search-form inspiratie-form">
-                        {alert !== "" && <Alert alert={alert} />}
                         <div>
                             <label className="inspiratie-label" htmlFor={mealType}>Meal type</label>
                             <select
@@ -161,6 +164,7 @@ getData();
                             </label>
                         </div>
                         <button type="submit" value="Search">Search</button>
+                        {alert !== "" && <ErrorBox message={alert} />}
                     </form>
                 </section>
                 <section className="fb-item">
