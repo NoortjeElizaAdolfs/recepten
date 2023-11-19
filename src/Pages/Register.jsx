@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../Context/AuthContext";
 
 const Register = () => {
-    const { register } = useContext(AuthContext);
+    const { register,token } = useContext(AuthContext);
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
@@ -19,7 +19,9 @@ const Register = () => {
             "password": password,
             "role": [role]
         })
-        navigate("/");
+        if(token !== null) {
+            navigate("/");
+        }
     }
   return (
     <>
@@ -27,7 +29,7 @@ const Register = () => {
         <section className='fb-item'>
             <h1 className='title'>Register Here</h1>
         </section>
-        <section>
+        <section className='fb-item'>
             <form onSubmit={handleSubmit} className='w-full flex flex-col py-4'>
                     <p className='text-white font-bold'>UserName</p>
                     <input type="text" onChange={e => setUsername(e.target.value)} required className='p-3 my-2 rounded text-black' placeholder='JohnDoe'/>
