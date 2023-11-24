@@ -23,7 +23,7 @@ function Cocktails() {
                 if(lowSugar) {url.push("&health=low-sugar")}
                 try {
                 const result = await axios.get(url.join(""));
-                        if (!result.ok) {
+                        if (result.ok) {
                                 // Handle specific error cases (e.g., 401 Unauthorized)
                                 throw new Error(`${result.status} ${result.statusText}`);                   
                         } else if (!result.data.more) {

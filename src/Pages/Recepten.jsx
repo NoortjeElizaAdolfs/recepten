@@ -24,7 +24,7 @@ function Recepten() {
             const result = await axios.get(url);
             if (!result.data.more) {
                 return setAlert("No food with such name");
-            } else if(!result.ok) {
+            } else if(result.ok) {
                 throw new Error(`${result.status} ${result.statusText}`);
             }
             setRecipes(result.data.hits);
